@@ -4,7 +4,6 @@ import com.resliv.city_bot.entity.City;
 import com.resliv.city_bot.service.dto.CityDto;
 import org.springframework.stereotype.Component;
 
-@Component
 public class CityMapper {
     
     public static CityDto toDto(City city) {
@@ -15,7 +14,7 @@ public class CityMapper {
         return cityDto;
     }
 
-    public City toEntity(CityDto cityDto) {
+    public static City toEntity(CityDto cityDto) {
         City city = new City();
         city.setId(cityDto.getId());
         city.setName(cityDto.getName());

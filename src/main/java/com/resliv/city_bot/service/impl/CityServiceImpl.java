@@ -1,5 +1,8 @@
 package com.resliv.city_bot.service.impl;
 
+import com.resliv.city_bot.entity.City;
+import com.resliv.city_bot.exception.CityAlreadyExists;
+import com.resliv.city_bot.exception.CityNotFoundException;
 import com.resliv.city_bot.repository.CityRepository;
 import com.resliv.city_bot.service.CityService;
 import com.resliv.city_bot.service.dto.CityDto;
@@ -20,32 +23,58 @@ public class CityServiceImpl implements CityService {
 
     @Override
     public CityDto getById(long id) {
-        return null;
+        City city = cityRepository.findById(id);
+        if (!(city == null)) {
+            return CityMapper.toDto(city);
+        } else {
+            throw new CityNotFoundException("city is not exist");
+        }
     }
 
     @Override
     public CityDto getByName(String name) {
-        return null;
+        City city = cityRepository.findByName(name);
+        if (!(city == null)) {
+            return CityMapper.toDto(city);
+        } else {
+            throw new CityNotFoundException("city is not exist");
+        }
     }
 
     @Override
     public List<CityDto> getAll() {
-        cityRepository.findAll().forEach(System.out::println);
         return cityRepository.findAll().stream().map(CityMapper::toDto).collect(Collectors.toList());
     }
 
     @Override
-    public CityDto create(CityDto cityDto) {
-        return null;
+    public CityDto add(CityDto cityDto) {
+        if (cityRepository.existsByName(cityDto.getName())) {
+            throw new CityAlreadyExists("city with name " + cityDto.getName() + " is already exist.");
+        } else {
+            cityRepository.save(CityMapper.toEntity(cityDto));
+        }
+        return cityDto;
     }
 
     @Override
-    public CityDto update(CityDto cityDto, Long id) {
-        return null;
+    public CityDto update(CityDto cityDto) {
+        if (cityRepository.existsById(cityDto.getId())) {
+            if (cityRepository.existsByNameIsAndIdNot(cityDto.getName(),cityDto.getId())) {
+                throw new CityAlreadyExists("city with name " + cityDto.getName() + " is already exist.");
+            }
+            cityRepository.save(CityMapper.toEntity(cityDto));
+        } else {
+            throw new CityNotFoundException("city is not exist");
+        }
+        return cityDto;
     }
 
     @Override
-    public void delete(CityDto cityDto) {
-
+    public void delete(Long id) {
+        if (cityRepository.existsById(id)) {
+            cityRepository.deleteById(id);
+        } else {
+            throw new CityNotFoundException("city is not exist");
+        }
     }
 }

@@ -12,9 +12,9 @@ public interface CityService {
 
     List<CityDto> getAll();
 
-    CityDto create(CityDto cityDto);
+    CityDto add(CityDto cityDto);
 
-    CityDto update(CityDto cityDto, Long id);
+    CityDto update(CityDto cityDto);
 
-    void delete(CityDto cityDto);
+    void delete(Long id);
 }
