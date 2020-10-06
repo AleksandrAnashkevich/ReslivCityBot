@@ -10,7 +10,9 @@
 spring.datasource.url=jdbc:postgresql://<хост>:<порт>/<имя_базы_данных> 
 
     Например: _spring.datasource.url=jdbc:postgresql://localhost:5432/resliv_
+    
     **Замечание:** имя базы данных должно совпадать с именем, указанным при создании БД (п.1.)
+    
 - В том же файле требуется указать логин и пароль для доступа к своей базе данных в spring.datasource.username и 
 spring.datasource.password соответственно, например:
 
@@ -46,4 +48,4 @@ _resliv.bot.token=1132435302:AAGILmsnnbZSTGMLcF7jqZbHuZP1fmXZ9zo_
 
 Удаление записи: [DELETE] /cities/{id}
 
-Все тестирования проводились в Postman
+_Все тестирования проводились в Postman_
