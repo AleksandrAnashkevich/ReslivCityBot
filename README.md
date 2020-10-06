@@ -9,7 +9,7 @@
 - в конфигурационном файле,который находится по пути src/main/resources/application.properties, необходимо указать данные своей базы данных по следующему шаблону: 
 spring.datasource.url=jdbc:postgresql://<хост>:<порт>/<имя_базы_данных> 
 
-    Например: _spring.datasource.url=jdbc:postgresql://localhost:5432/resliv
+    Например: _spring.datasource.url=jdbc:postgresql://localhost:5432/resliv_
     **Замечание:** имя базы данных должно совпадать с именем, указанным при создании БД (п.1.)
 - В том же файле требуется указать логин и пароль для доступа к своей базе данных в spring.datasource.username и 
 spring.datasource.password соответственно, например:
