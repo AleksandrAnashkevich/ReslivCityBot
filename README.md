@@ -42,7 +42,7 @@ _resliv.bot.token=1132435302:AAGILmsnnbZSTGMLcF7jqZbHuZP1fmXZ9zo_
 
 - Получить все записи: [GET] /cities
 
-- Добавить новую запись: [GET] /cities
+- Добавить новую запись: [POST] /cities
 
 - Обновление записи: [PUT] /cities/{id}
 
