@@ -2,7 +2,6 @@ package com.resliv.city_bot.service.mapper;
 
 import com.resliv.city_bot.entity.City;
 import com.resliv.city_bot.service.dto.CityDto;
-import org.springframework.stereotype.Component;
 
 public class CityMapper {
     

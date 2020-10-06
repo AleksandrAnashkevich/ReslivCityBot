@@ -7,6 +7,7 @@ import com.resliv.city_bot.repository.CityRepository;
 import com.resliv.city_bot.service.CityService;
 import com.resliv.city_bot.service.dto.CityDto;
 import com.resliv.city_bot.service.mapper.CityMapper;
+import com.resliv.city_bot.util.ConstantExceptionMessage;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -27,7 +28,7 @@ public class CityServiceImpl implements CityService {
         if (!(city == null)) {
             return CityMapper.toDto(city);
         } else {
-            throw new CityNotFoundException("city is not exist");
+            throw new CityNotFoundException(ConstantExceptionMessage.cityNotFoundExceptionMessage);
         }
     }
 
@@ -37,7 +38,7 @@ public class CityServiceImpl implements CityService {
         if (!(city == null)) {
             return CityMapper.toDto(city);
         } else {
-            throw new CityNotFoundException("city is not exist");
+            throw new CityNotFoundException(ConstantExceptionMessage.cityNotFoundExceptionMessage);
         }
     }
 
@@ -49,7 +50,8 @@ public class CityServiceImpl implements CityService {
     @Override
     public CityDto add(CityDto cityDto) {
         if (cityRepository.existsByName(cityDto.getName())) {
-            throw new CityAlreadyExists("city with name " + cityDto.getName() + " is already exist.");
+            throw new CityAlreadyExists(ConstantExceptionMessage.cityAlreadyExistsMessageFirstPart
+                    + cityDto.getName() + ConstantExceptionMessage.cityAlreadyExistsMessageSecondPart);
         } else {
             cityRepository.save(CityMapper.toEntity(cityDto));
         }
@@ -60,11 +62,12 @@ public class CityServiceImpl implements CityService {
     public CityDto update(CityDto cityDto) {
         if (cityRepository.existsById(cityDto.getId())) {
             if (cityRepository.existsByNameIsAndIdNot(cityDto.getName(),cityDto.getId())) {
-                throw new CityAlreadyExists("city with name " + cityDto.getName() + " is already exist.");
+                throw new CityAlreadyExists(ConstantExceptionMessage.cityAlreadyExistsMessageFirstPart
+                        + cityDto.getName() + ConstantExceptionMessage.cityAlreadyExistsMessageSecondPart);
             }
             cityRepository.save(CityMapper.toEntity(cityDto));
         } else {
-            throw new CityNotFoundException("city is not exist");
+            throw new CityNotFoundException(ConstantExceptionMessage.cityNotFoundExceptionMessage);
         }
         return cityDto;
     }
@@ -74,7 +77,7 @@ public class CityServiceImpl implements CityService {
         if (cityRepository.existsById(id)) {
             cityRepository.deleteById(id);
         } else {
-            throw new CityNotFoundException("city is not exist");
+            throw new CityNotFoundException(ConstantExceptionMessage.cityNotFoundExceptionMessage);
         }
     }
 }

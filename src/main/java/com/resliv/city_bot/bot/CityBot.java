@@ -1,8 +1,7 @@
 package com.resliv.city_bot.bot;
 
 import com.resliv.city_bot.bot.message.factory.MessageFactory;
-import com.resliv.city_bot.service.CityService;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
@@ -15,21 +14,19 @@ import org.telegram.telegrambots.meta.exceptions.TelegramApiRequestException;
 import javax.annotation.PostConstruct;
 
 @Component
+@PropertySource("classpath:telegram.properties")
 public class CityBot extends TelegramLongPollingBot {
 
-    private TelegramBotsApi telegramBotsApi;
-    private MessageFactory messageFactory;
+    @Value("${resliv.bot.name}")
+    private String botName;
+    @Value("${resliv.bot.token}")
+    private String botToken;
+    private final TelegramBotsApi telegramBotsApi;
+    private final MessageFactory messageFactory;
 
     public CityBot(MessageFactory messageFactory) {
         this.telegramBotsApi = new TelegramBotsApi();
         this.messageFactory = messageFactory;
-    }
-
-    private CityService cityService;
-
-    @Autowired
-    public void setCityService(CityService cityService) {
-        this.cityService = cityService;
     }
 
     @Override
@@ -47,12 +44,12 @@ public class CityBot extends TelegramLongPollingBot {
 
     @Override
     public String getBotUsername() {
-        return "CityMessageReslivbot";
+        return botName;
     }
 
     @Override
     public String getBotToken() {
-        return "1132435302:AAGILmsnnbZSTGMLcF7jqZbHuZP1fmXZ9zo";
+        return botToken;
     }
 
     @PostConstruct

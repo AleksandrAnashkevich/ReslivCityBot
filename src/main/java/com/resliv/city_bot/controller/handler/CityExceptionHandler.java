@@ -1,5 +1,6 @@
 package com.resliv.city_bot.controller.handler;
 
+import com.resliv.city_bot.exception.CityAlreadyExists;
 import com.resliv.city_bot.exception.dto.ExceptionDto;
 import com.resliv.city_bot.exception.CityNotFoundException;
 import org.springframework.http.HttpStatus;
@@ -17,7 +18,7 @@ public class CityExceptionHandler {
         return new ExceptionDto(e.getMessage());
     }
 
-    @ExceptionHandler(RuntimeException.class)
+    @ExceptionHandler(CityAlreadyExists.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public @ResponseBody
     ExceptionDto isException(RuntimeException e) {

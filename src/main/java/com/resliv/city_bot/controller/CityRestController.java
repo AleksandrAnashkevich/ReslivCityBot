@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/city")
+@RequestMapping("/cities")
 public class CityRestController {
 
     private CityService cityService;
@@ -20,7 +20,7 @@ public class CityRestController {
         this.cityService = cityService;
     }
 
-    @GetMapping("/all")
+    @GetMapping
     public List<CityDto> findAll() {
         return cityService.getAll();
     }
@@ -30,17 +30,18 @@ public class CityRestController {
         return cityService.getById(id);
     }
 
-    @PostMapping("/add")
+    @PostMapping
     public CityDto addCity(@RequestBody CityDto cityDto) throws CityNotFoundException, CityAlreadyExists {
         return cityService.add(cityDto);
     }
 
-    @PutMapping("/update")
-    public CityDto updateCity(@RequestBody CityDto cityDto) throws CityNotFoundException, CityAlreadyExists {
+    @PutMapping("{id}")
+    public CityDto updateCity(@PathVariable Long id,@RequestBody CityDto cityDto) throws CityNotFoundException, CityAlreadyExists {
+        cityDto.setId(id);
         return cityService.update(cityDto);
     }
 
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("{id}")
     public void deleteCity(@PathVariable Long id) throws CityNotFoundException {
         cityService.delete(id);
     }
