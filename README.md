@@ -46,6 +46,6 @@ _resliv.bot.token=1132435302:AAGILmsnnbZSTGMLcF7jqZbHuZP1fmXZ9zo_
 
 - Обновление записи: [PUT] /cities/{id}
 
-Удаление записи: [DELETE] /cities/{id}
+- Удаление записи: [DELETE] /cities/{id}
 
-_Все тестирования проводились в Postman_
+- **_Все тестирования проводились в Postman_**
