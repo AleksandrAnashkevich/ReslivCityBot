@@ -2,7 +2,7 @@
 
 **Вступительное задание для компании Resliv**
 
-Стек: Java8, Spring Boot, Spring MVC, SpringData, Hibernate, PostreSQL, Maven.
+Стек: Java8, Spring Boot, Spring MVC, SpringData, Hibernate, PostgreSQL, Maven.
 
 **Создание базы данных**
 - создать базу данных в pgAdmin и придумать ей имя,например:resliv.
