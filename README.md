@@ -27,9 +27,9 @@ spring.datasource.password соответственно, например:
 
 **Настройка бота**
 
-Вы можете воспользоваться уже готовым ботом с именем CityBot
+Я использовал созданный через Telegram бот CityBot
 
-Данные,необходимые для подключения уже созданного бота (указываются в конфигурационном файле telegram.properties):
+Данные,необходимые для подключения к нему (указываются в конфигурационном файле telegram.properties):
 
 _resliv.bot.name=CityMessageReslivbot_
 
@@ -38,13 +38,13 @@ _resliv.bot.token=1132435302:AAGILmsnnbZSTGMLcF7jqZbHuZP1fmXZ9zo_
 
 **О работе приложения(REST):**
 
-Получить запись по id: [GET] /cities/{id}
+- Получить запись по id: [GET] /cities/{id}
 
-Получить все записи: [GET] /cities
+- Получить все записи: [GET] /cities
 
-Добавить новую запись: [GET] /cities
+- Добавить новую запись: [GET] /cities
 
-Обновление записи: [PUT] /cities/{id}
+- Обновление записи: [PUT] /cities/{id}
 
 Удаление записи: [DELETE] /cities/{id}
 
